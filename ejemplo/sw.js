@@ -2,7 +2,7 @@ self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('fox-store').then(function(cache) {
      return cache.addAll([
-       '/PWA1.2/ejemplo/',
+     
        '/PWA1.2/index.html',
        '/PWA1.2/index.js',
        '/PWA1.2/style.css',
