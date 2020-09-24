@@ -11,7 +11,7 @@ setInterval(function() {
   imgElem.src = 'images/' + randomChoice + '.jpg';
 }, 2000)
 
-// Register service worker to control making site work offline
+// Registrar el service worker para controlar que el sitio funcione sin conexión
 
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
@@ -19,26 +19,26 @@ if('serviceWorker' in navigator) {
            .then(function() { console.log('Service Worker Registered'); });
 }
 
-// Code to handle install prompt on desktop
+// Código para manejar el mensaje de instalación en el escritorio
 
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
 addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  // Evite que Chrome 67 y versiones anteriores muestren automáticamente el mensaje
   e.preventDefault();
-  // Stash the event so it can be triggered later.
+  //Guarde el evento para que pueda activarse más tarde.
   deferredPrompt = e;
-  // Update UI to notify the user they can add to home screen
+  // Actualice la interfaz de usuario para notificar al usuario que puede agregar a la pantalla de inicio
   addBtn.style.display = 'block';
 
   addBtn.addEventListener('click', (e) => {
-    // hide our user interface that shows our A2HS button
+    // ocultar nuestra interfaz de usuario que muestra nuestro botón 
     addBtn.style.display = 'none';
-    // Show the prompt
+    // mostrar mensaje
     deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
+    // Espera a que la usuario responda a la solicitud
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the A2HS prompt');
